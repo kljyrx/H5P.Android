@@ -199,6 +199,7 @@ public class UploadNetWork extends NetWork {
 					int length = -1;
 					while ((length = fStream.read(buffer)) != -1) {
 						ds.write(buffer, 0, length);
+						mUploadedSize = ds.size();
 					}
 					ds.writeBytes(end);
 					fStream.close();
@@ -211,7 +212,6 @@ public class UploadNetWork extends NetWork {
 					ds.write(sb.toString().getBytes());
 					sb.delete(0, sb.length());
 				}
-				mUploadedSize = ds.size();
 				mReqListener.onNetStateChanged(NetState.NET_HANDLE_ING,isAbort);
 			}
 		}
